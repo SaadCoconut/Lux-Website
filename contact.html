@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Coconut Luxembourg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-bar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">CL</span>
+          <span class="brand-text">
+            <span class="brand-name">Coconut Luxembourg</span>
+            <span class="brand-tagline">Euro-Mediterranean Youth Innovation</span>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="sr-only">Toggle menu</span>
+          </button>
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <h1>Contact Coconut Luxembourg</h1>
+          <p>Partner with us on youth programmes, request information, or invite us to collaborate.</p>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <div class="container contact-wrapper">
+          <div class="contact-card contact-details">
+            <h3>Partnerships &amp; enquiries</h3>
+            <p>We welcome collaborations with schools, municipalities, NGOs, and funders.</p>
+            <p>
+              Email: <a href="mailto:hello@coconutluxembourg.org">hello@coconutluxembourg.org</a><br />
+              Phone: +352 621 000 321
+            </p>
+            <p>
+              Coconut Luxembourg ASBL<br />
+              12 Rue de la Jeunesse<br />
+              L-1234 Luxembourg City
+            </p>
+            <p>Office hours: Monday–Friday, 09:00–17:30 CET</p>
+          </div>
+          <div class="contact-card">
+            <h3>Send us a message</h3>
+            <form class="contact-form" id="contactForm" novalidate>
+              <div>
+                <label for="fullName">Full name *</label>
+                <input id="fullName" name="fullName" type="text" required placeholder="Your name" />
+              </div>
+              <div>
+                <label for="organisation">Organisation</label>
+                <input id="organisation" name="organisation" type="text" placeholder="Organisation or group" />
+              </div>
+              <div>
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="Optional phone number" />
+              </div>
+              <div>
+                <label for="interest">Area of interest *</label>
+                <select id="interest" name="interest" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="entrepreneurship">Design Thinking &amp; Entrepreneurship</option>
+                  <option value="intercultural">Intercultural Dialogue &amp; Peace-building</option>
+                  <option value="digital">Digital Participation</option>
+                  <option value="environmental">Environmental Sustainability</option>
+                  <option value="other">General enquiry</option>
+                </select>
+              </div>
+              <div>
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required placeholder="How can we work together?"></textarea>
+              </div>
+              <div>
+                <label>
+                  <input type="checkbox" id="consent" required /> I agree to the storage of my data for follow-up purposes.
+                </label>
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Submit message</button>
+              </div>
+              <div class="alert alert-success" id="successMessage" hidden>
+                Thank you! Our team will respond within two working days.
+              </div>
+              <div class="alert alert-error" id="errorMessage" hidden>
+                Please complete all required fields marked with an asterisk.
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <span class="brand-mark brand-mark-sm">CL</span>
+          <p class="footer-description">
+            Coconut Luxembourg ASBL<br />
+            Empowering youth through entrepreneurship, intercultural learning, digital participation, and environmental action.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Visit</h3>
+          <p>
+            12 Rue de la Jeunesse<br />
+            L-1234 Luxembourg City<br />
+            hello@coconutluxembourg.org
+          </p>
+        </div>
+        <div>
+          <h3>Follow</h3>
+          <p>
+            <a href="#">Instagram</a><br />
+            <a href="#">LinkedIn</a><br />
+            <a href="#">Facebook</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-note">© 2025 Coconut Luxembourg ASBL. All rights reserved.</div>
+    </footer>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.getElementById('primary-nav');
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('nav-open');
+      });
+
+      const contactForm = document.getElementById('contactForm');
+      const successMessage = document.getElementById('successMessage');
+      const errorMessage = document.getElementById('errorMessage');
+
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        successMessage.hidden = true;
+        errorMessage.hidden = true;
+
+        if (!contactForm.checkValidity()) {
+          errorMessage.hidden = false;
+          contactForm.reportValidity();
+          return;
+        }
+
+        contactForm.reset();
+        successMessage.hidden = false;
+      });
+    </script>
+  </body>
+</html>
