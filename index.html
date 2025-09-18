@@ -1,9 +1,315 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>My first site</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coconut Luxembourg | Empowering Euro-Mediterranean Youth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <header class="site-header">
+      <div class="container header-bar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">CL</span>
+          <span class="brand-text">
+            <span class="brand-name">Coconut Luxembourg</span>
+            <span class="brand-tagline">Euro-Mediterranean Youth Innovation</span>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="sr-only">Toggle menu</span>
+          </button>
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <div class="hero-copy">
+            <p class="eyebrow">Luxembourg meets the Euro-Mediterranean</p>
+            <h1>Empowering young people to reimagine communities</h1>
+            <p>
+              Coconut Luxembourg is the national branch of the Coconutwork network. We support youth-led innovation through
+              entrepreneurship programmes, intercultural dialogue, digital participation, and environmental action.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="initiatives.html">Explore our initiatives</a>
+              <a class="btn btn-secondary" href="contact.html">Start a partnership</a>
+            </div>
+            <div class="hero-meta" aria-label="Key highlights">
+              <span class="hero-chip">16 cross-border projects</span>
+              <span class="hero-chip">4 strategic priority areas</span>
+              <span class="hero-chip">20+ international partners</span>
+            </div>
+          </div>
+          <div class="hero-visual" role="presentation">
+            <img
+              src="https://placehold.co/960x640/8C5A2B/ffffff?text=Coconut+Luxembourg"
+              alt="Placeholder banner representing Coconut Luxembourg"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-muted">
+        <div class="container narrow">
+          <div class="section-header">
+            <h2>About Coconut Luxembourg</h2>
+            <p>
+              We are a non-profit association (ASBL) advancing the Coconutwork vision in Luxembourg. Our team delivers
+              non-formal education programmes that help young people build inclusive ventures, intercultural bridges, and
+              greener futures across Europe and the Mediterranean region.
+            </p>
+          </div>
+          <div class="section-actions">
+            <a class="link-arrow" href="about.html">Read our story</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Our areas of activity</h2>
+            <p>
+              Each programme combines design thinking, youth leadership, and strategic partnerships to respond to the needs of
+              Luxembourg’s communities.
+            </p>
+          </div>
+          <div class="grid cards-grid">
+            <article class="card card-area">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img" focusable="false">
+                  <path
+                    d="M10 50h44M18 26l14-12 14 12M22 30v20M32 30v20M42 30v20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Design Thinking &amp; Entrepreneurship</h3>
+              <p>
+                Incubators, accelerators, and mentoring that help young innovators test solutions, secure investment, and scale
+                social impact ventures.
+              </p>
+            </article>
+            <article class="card card-area">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img" focusable="false">
+                  <path
+                    d="M12 20c4 0 6-4 10-4s6 4 10 4 6-4 10-4 6 4 10 4v24c-4 0-6 4-10 4s-6-4-10-4-6 4-10 4-6-4-10-4V20Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M32 24v16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <h3>Intercultural Dialogue &amp; Peace-building</h3>
+              <p>
+                Exchanges, dialogue labs, and cultural residencies that strengthen mutual understanding across Euro-Mediterranean
+                communities.
+              </p>
+            </article>
+            <article class="card card-area">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img" focusable="false">
+                  <path
+                    d="M20 18h24M20 26h24M14 34h36M18 42h28M24 50h16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="12" cy="18" r="4" fill="currentColor" />
+                  <circle cx="52" cy="34" r="4" fill="currentColor" />
+                </svg>
+              </div>
+              <h3>Digital Participation</h3>
+              <p>
+                Civic tech bootcamps, media literacy programmes, and mentorship initiatives that ensure everyone has a voice in
+                digital spaces.
+              </p>
+            </article>
+            <article class="card card-area">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img" focusable="false">
+                  <path
+                    d="M32 10v44M18 26c0 8 6 14 14 14s14-6 14-14"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 36c0 9 9 18 20 18s20-9 20-18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3>Environmental Sustainability</h3>
+              <p>
+                Climate coaching, citizen science projects, and circular economy labs co-created with schools, municipalities, and
+                youth organisations.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-muted">
+        <div class="container">
+          <div class="section-header">
+            <h2>Impact in numbers</h2>
+            <p>We translate youth creativity into measurable results for partners, municipalities, and local communities.</p>
+          </div>
+          <dl class="impact-grid">
+            <div class="impact-card">
+              <span class="impact-icon" aria-hidden="true">🌐</span>
+              <dt>16</dt>
+              <dd>Active cross-border projects</dd>
+            </div>
+            <div class="impact-card">
+              <span class="impact-icon" aria-hidden="true">🤝</span>
+              <dt>20+</dt>
+              <dd>Countries engaged across our network</dd>
+            </div>
+            <div class="impact-card">
+              <span class="impact-icon" aria-hidden="true">🎓</span>
+              <dt>1,200</dt>
+              <dd>Young people trained since 2022</dd>
+            </div>
+            <div class="impact-card">
+              <span class="impact-icon" aria-hidden="true">🏛️</span>
+              <dt>45</dt>
+              <dd>Institutional and community partners</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>What partners and participants say</h2>
+            <p>Feedback from the people who co-create and benefit from Coconut Luxembourg programmes.</p>
+          </div>
+          <div class="grid testimonials-grid">
+            <figure class="testimonial-card">
+              <blockquote>
+                “Coconut Luxembourg gave our students the confidence to prototype circular economy ventures and present them to
+                local investors.”
+              </blockquote>
+              <figcaption>
+                <span class="testimonial-name">Anaïs Schmit</span>
+                <span class="testimonial-role">Teacher, Lycée Technique du Centre</span>
+              </figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <blockquote>
+                “The intercultural dialogue labs reshaped how our youth centre approaches peace-building and community storytelling.”
+              </blockquote>
+              <figcaption>
+                <span class="testimonial-name">Marco Petrescu</span>
+                <span class="testimonial-role">Coordinator, Maison des Jeunes Dudelange</span>
+              </figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <blockquote>
+                “Partnering with Coconut Luxembourg ensures our environmental grants reach committed young changemakers.”
+              </blockquote>
+              <figcaption>
+                <span class="testimonial-name">Sophie Laurent</span>
+                <span class="testimonial-role">Programme Officer, Fondation de Luxembourg</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <span class="brand-mark brand-mark-sm">CL</span>
+          <p class="footer-description">
+            Coconut Luxembourg ASBL<br />
+            Empowering youth through entrepreneurship, intercultural learning, digital participation, and environmental action.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Visit</h3>
+          <p>
+            12 Rue de la Jeunesse<br />
+            L-1234 Luxembourg City<br />
+            hello@coconutluxembourg.org
+          </p>
+        </div>
+        <div>
+          <h3>Follow</h3>
+          <p>
+            <a href="#">Instagram</a><br />
+            <a href="#">LinkedIn</a><br />
+            <a href="#">Facebook</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-note">© 2025 Coconut Luxembourg ASBL. All rights reserved.</div>
+    </footer>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.getElementById('primary-nav');
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('nav-open');
+      });
+    </script>
   </body>
 </html>
