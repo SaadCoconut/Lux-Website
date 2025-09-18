@@ -1,9 +1,2401 @@
 <!DOCTYPE html>
-<html>
+<html lang="lb">
   <head>
-    <title>My first site</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coconut Luxembourg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: hsl(28, 45%, 35%);
+        --primary-light: hsl(28, 45%, 45%);
+        --secondary: hsl(127, 50%, 40%);
+        --secondary-light: hsl(127, 50%, 55%);
+        --text-dark: hsl(210, 15%, 15%);
+        --text-muted: hsl(210, 10%, 40%);
+        --surface: hsl(40, 45%, 96%);
+        --surface-strong: hsl(28, 20%, 92%);
+        --border: hsla(28, 20%, 40%, 0.25);
+        --shadow: 0 18px 40px rgba(140, 90, 43, 0.15);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --radius-sm: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Source Sans 3", "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #fff 0%, var(--surface) 100%);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Poppins", sans-serif;
+        color: var(--primary);
+        margin-top: 0;
+        text-transform: none;
+        letter-spacing: 0.02em;
+      }
+
+      p {
+        margin: 0 0 1rem;
+        text-align: justify;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 6px 18px rgba(140, 90, 43, 0.12);
+      }
+
+      .top-bar {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.5rem;
+        min-height: 5rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .brand-logo {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: 700;
+        box-shadow: var(--shadow);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.25rem;
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+      }
+
+      nav a {
+        color: var(--text-dark);
+        position: relative;
+        padding-bottom: 0.2rem;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--secondary);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.2s ease;
+      }
+
+      nav a:hover::after,
+      nav a:focus::after {
+        transform: scaleX(1);
+      }
+
+      .language-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--surface-strong);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .language-toggle span {
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+      }
+
+      .language-toggle .active {
+        background: var(--secondary);
+        color: #fff;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 1.5rem 4rem;
+      }
+
+      .hero-card {
+        padding: 2.5rem;
+        border-radius: var(--radius-lg);
+        background: linear-gradient(135deg, rgba(140, 90, 43, 0.9), rgba(140, 90, 43, 0.8)),
+          url("https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=1400&q=80") center/cover;
+        color: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card h1 {
+        color: #fff;
+        font-size: clamp(2.2rem, 2.8vw, 3rem);
+        margin-bottom: 1rem;
+      }
+
+      .hero-card p {
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 1.05rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 0.9rem 1.8rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--secondary);
+        color: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        color: #fff;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .stat-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        padding: 1.8rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .stat-card h3 {
+        color: var(--secondary);
+        font-size: 2.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3.5rem 1.5rem;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+
+      .section-header p {
+        max-width: 640px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.75rem;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: var(--radius-md);
+        padding: 1.75rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .card h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .program-icon {
+        width: 3.6rem;
+        height: 3.6rem;
+        border-radius: var(--radius-md);
+        background: var(--surface-strong);
+        display: grid;
+        place-items: center;
+        font-size: 1.7rem;
+        color: var(--secondary);
+        box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05);
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .filter-btn {
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        padding: 0.55rem 1.2rem;
+        background: #fff;
+        font-weight: 600;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--secondary);
+        color: #fff;
+        border-color: transparent;
+        box-shadow: var(--shadow);
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+      }
+
+      .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      .badge {
+        padding: 0.4rem 0.85rem;
+        border-radius: 999px;
+        background: rgba(127, 190, 126, 0.18);
+        color: var(--secondary);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      .square-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, rgba(140, 90, 43, 0.12), rgba(140, 90, 43, 0.3));
+        display: grid;
+        place-items: center;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-align: center;
+        padding: 1.2rem;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .team-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        text-align: center;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .team-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 32px;
+        background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+        margin: 0 auto 1.25rem;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 2.2rem;
+        font-weight: 700;
+        box-shadow: 0 12px 30px rgba(127, 190, 126, 0.35);
+      }
+
+      .team-role {
+        color: var(--secondary);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .initiatives-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.75rem;
+      }
+
+      .initiative-card {
+        background: #fff;
+        padding: 1.6rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .resources-list,
+      .partners-list {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .resource-item,
+      .partner-item {
+        background: #fff;
+        border-radius: var(--radius-md);
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .resource-meta,
+      .partner-tags {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 0.75rem;
+      }
+
+      .resource-meta span,
+      .partner-tags span {
+        background: rgba(140, 90, 43, 0.1);
+        color: var(--primary);
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .contact-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        align-items: start;
+      }
+
+      form {
+        display: grid;
+        gap: 1rem;
+      }
+
+      label {
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid rgba(140, 90, 43, 0.25);
+        background: #fff;
+        font-size: 1rem;
+        font-family: inherit;
+      }
+
+      textarea {
+        min-height: 160px;
+        resize: vertical;
+      }
+
+      .form-message {
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+      }
+
+      .form-message.success {
+        background: rgba(127, 190, 126, 0.15);
+        color: var(--secondary);
+        border: 1px solid rgba(127, 190, 126, 0.45);
+      }
+
+      .form-message.error {
+        background: rgba(214, 65, 65, 0.1);
+        color: hsl(0, 65%, 40%);
+        border: 1px solid rgba(214, 65, 65, 0.3);
+      }
+
+      .terms {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        font-size: 0.95rem;
+      }
+
+      footer {
+        background: var(--primary);
+        color: rgba(255, 255, 255, 0.9);
+        padding: 2.5rem 1.5rem;
+      }
+
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .social-wall-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        align-items: center;
+      }
+
+      .social-posts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .social-card {
+        background: #fff;
+        border-radius: var(--radius-md);
+        padding: 1.25rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .social-platform {
+        font-weight: 700;
+        color: var(--secondary);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+      }
+
+      .chatbot-toggle {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--secondary);
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        padding: 0.9rem 1.4rem;
+        font-weight: 600;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      .chatbot-window {
+        position: fixed;
+        bottom: 5.5rem;
+        right: 2rem;
+        width: min(360px, 90vw);
+        background: #fff;
+        border-radius: var(--radius-md);
+        box-shadow: 0 30px 60px rgba(20, 20, 20, 0.25);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        z-index: 1002;
+      }
+
+      .chatbot-window.active {
+        display: flex;
+      }
+
+      .chatbot-header {
+        background: var(--primary);
+        color: #fff;
+        padding: 1rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .chatbot-messages {
+        padding: 1.25rem;
+        max-height: 320px;
+        overflow-y: auto;
+        display: grid;
+        gap: 0.85rem;
+        background: var(--surface);
+      }
+
+      .chatbot-input {
+        display: flex;
+        gap: 0.6rem;
+        padding: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .chatbot-input input {
+        flex: 1;
+        border-radius: 999px;
+        border: 1px solid rgba(140, 90, 43, 0.3);
+        padding: 0.7rem 1rem;
+      }
+
+      .chatbot-input button {
+        border-radius: 999px;
+        border: none;
+        background: var(--secondary);
+        color: #fff;
+        padding: 0.7rem 1.2rem;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .chat-message {
+        padding: 0.75rem 1rem;
+        border-radius: 16px;
+        max-width: 85%;
+        font-size: 0.95rem;
+      }
+
+      .chat-message.user {
+        margin-left: auto;
+        background: rgba(127, 190, 126, 0.18);
+        color: var(--text-dark);
+      }
+
+      .chat-message.bot {
+        background: #fff;
+        border: 1px solid rgba(140, 90, 43, 0.2);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+
+      th,
+      td {
+        border: 1px solid rgba(140, 90, 43, 0.2);
+        padding: 0.75rem 0.9rem;
+        text-align: left;
+      }
+
+      th {
+        background: var(--surface-strong);
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        nav ul {
+          display: none;
+        }
+
+        header {
+          position: static;
+        }
+
+        .hero {
+          padding-top: 3.5rem;
+        }
+
+        .chatbot-toggle {
+          right: 1rem;
+          bottom: 1rem;
+        }
+
+        .chatbot-window {
+          right: 1rem;
+          bottom: 4.5rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <header>
+      <div class="top-bar">
+        <div class="brand">
+          <div class="brand-logo">CL</div>
+          <div>
+            <strong>Coconut Luxembourg</strong>
+            <div data-i18n="brand.tagline">Empower Euro-Med youth through action</div>
+          </div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#programs" data-i18n="nav.programs">Programmer</a></li>
+            <li><a href="#projects" data-i18n="nav.projects">Projeten</a></li>
+            <li><a href="#team" data-i18n="nav.team">Team</a></li>
+            <li><a href="#initiatives" data-i18n="nav.initiatives">Initiativen</a></li>
+            <li><a href="#resources" data-i18n="nav.resources">Ressourcen</a></li>
+            <li><a href="#partnerships" data-i18n="nav.partnerships">Partnerschaften</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+          </ul>
+        </nav>
+        <button class="language-toggle" id="languageToggle" aria-label="Change language">
+          <span class="active" data-lang="lb">LB</span>
+          <span data-lang="en">EN</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1 data-i18n="hero.heading">Mir verbannen Jugendlech a Lëtzebuerg mat Euro-Med Chancen</h1>
+        <p data-i18n="hero.subheading">
+          Coconut Luxembourg (ASBL) ass den nationale Partner vum Coconutwork Netzwierk a bréngt innovativ non-formell Léieren un déi nächst Generatioun vun Entrepreneuren, Digital Changemakers an Ëmwelt Leaderen.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects" data-i18n="hero.ctaPrimary">Entdeckt eis Projeten</a>
+          <a class="btn btn-outline" href="#contact" data-i18n="hero.ctaSecondary">Partner mat eis</a>
+        </div>
+      </div>
+      <div class="hero-stats" id="impactMetrics"></div>
+    </section>
+
+    <main>
+      <section class="section" id="programs">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="programs.title">Eise Léier-Ökosystem</h2>
+            <p data-i18n="programs.lead">
+              Duerch déi véier Prioritéitsberäicher vum Coconutwork Netzwierk begleede mir Jugendinitiativë vun der Iddi bis zur internationaler Uwendung, mat engem Fokus op nohaltege Wuesstem an interkultureller Kooperatioun.
+            </p>
+          </div>
+        </div>
+        <div class="cards-grid" id="programCards"></div>
+      </section>
+
+      <section class="section" id="success">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="success.title">Wierkung a Succèsgeschichten</h2>
+            <p data-i18n="success.lead">
+              Eis Projeten an Austauschprogrammer bréngen Jugendorganisatiounen, Communautéiten a Partner zesummen fir konkret Resultater ze liwweren. Hei ass eng Auswiel vun de Geschichten, déi eis Missioun stäerken.
+            </p>
+          </div>
+        </div>
+        <div class="cards-grid" id="successStories"></div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="projects.title">Portfolio vun 16 Coconut Luxembourg Projeten</h2>
+            <p data-i18n="projects.lead">
+              Eis Projeten decken Entrepreneurship, Interkulturellt Léieren, Digital Participatioun an Ëmwelt Nohaltegkeet of. Filtert fir déi Initiativen ze gesinn, déi Iech am meeschte inspiréieren.
+            </p>
+          </div>
+        </div>
+        <div class="filters" id="projectFilters"></div>
+        <div class="cards-grid" id="projectGrid"></div>
+      </section>
+
+      <section class="section" id="social">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="social.title">Sozial Medien Wänn</h2>
+            <p data-i18n="social.lead">
+              Verfollegt Live-Highlights vu jidderengem vun eisen 16 Projeten. Wielt e Projet an filtert no Plattform fir déi aktuell Aktivitéiten a Geschichten ze entdecken.
+            </p>
+          </div>
+        </div>
+        <div class="social-wall-controls">
+          <label for="projectSelect" data-i18n="social.selectLabel">Projet auswielen</label>
+          <select id="projectSelect"></select>
+          <div class="filters" id="platformFilters"></div>
+        </div>
+        <div class="social-posts" id="socialPosts"></div>
+      </section>
+
+      <section class="section" id="team">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="team.title">Eng divers a passionéiert Ekip</h2>
+            <p data-i18n="team.lead">
+              Mat iwwer 20 Länner Erfahrung féiert d'Ekip vum Coconut Luxembourg Projeten duerch Erasmus+, Horizon Europe an lokal Partnerschaften. Mir stäerken Jugendleit fir haaptsächlech gesellschaftlech Erausfuerderungen unzegoen.
+            </p>
+          </div>
+        </div>
+        <div class="team-grid" id="teamGrid"></div>
+      </section>
+
+      <section class="section" id="initiatives">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="initiatives.title">Lokal Initiativen am ganze Land</h2>
+            <p data-i18n="initiatives.lead">
+              Eis Gemeinschaftsprogrammer verbannen Dierfer a Stied vu Lëtzebuerg. Duerch Pop-up Labs, Dialogserien a mentoresch Ënnerstëtzung brénge mir d'Jugendaarbecht an all Kantonen.
+            </p>
+          </div>
+        </div>
+        <div class="initiatives-grid" id="initiativesGrid"></div>
+      </section>
+
+      <section class="section" id="resources">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="resources.title">Ressourcen a Gouvernance</h2>
+            <p data-i18n="resources.lead">
+              Lued eis offiziell Dokumenter erof, fënnt Training Kits a sicht no Member-Informatiounen. Transparenz an Professionaliséierung stinn am Kär vun eiser ASBL-Struktur.
+            </p>
+          </div>
+        </div>
+        <div class="resources-list" id="resourcesList"></div>
+        <div class="section" style="padding: 2rem 0 0">
+          <h3 data-i18n="resources.usersTitle">YouthWork Benotzerstruktur</h3>
+          <p data-i18n="resources.usersLead">
+            Mir verwalten en authentescht Benotzersystem fir Mentoren, Facilitatoren an Administrateuren. Dës Iwwersiicht weist eis aktuell Rollen a Fokusberäicher.
+          </p>
+          <div class="resource-item">
+            <div class="table-wrapper">
+              <table aria-label="User roles table">
+                <thead>
+                  <tr>
+                    <th data-i18n="resources.userName">Numm</th>
+                    <th data-i18n="resources.userRole">Roll</th>
+                    <th data-i18n="resources.userFocus">Fokusberäich</th>
+                  </tr>
+                </thead>
+                <tbody id="userTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="partnerships">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="partnerships.title">Partnerschaften a Kooperatiounen</h2>
+            <p data-i18n="partnerships.lead">
+              Eist Netzwierk ëmfaasst Finanzéierungsagenturen, ëffentlech Institutiounen, europäesch Plattformen a lokal Associatiounen. Zesummen halen mir Jugendprojeten am Beweegung.
+            </p>
+          </div>
+        </div>
+        <div class="partners-list" id="partnersList"></div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="contact.title">Kontaktéiert eis Partnerschaftsteam</h2>
+            <p data-i18n="contact.lead">
+              Gitt an de Kontakt fir Kooperatiounen, EU Konsortiën oder Gemeinschaftsinitiativë virzeschloen. Mir äntweren bannent dräi Aarbechtsdeeg.
+            </p>
+          </div>
+        </div>
+        <div class="contact-wrapper">
+          <form id="contactForm" novalidate>
+            <div>
+              <label for="name" data-i18n="contact.nameLabel">Vollen Numm</label>
+              <input id="name" name="name" type="text" required placeholder="Dräi Kaweechelchen" />
+            </div>
+            <div>
+              <label for="email" data-i18n="contact.emailLabel">E-Mail</label>
+              <input id="email" name="email" type="email" required placeholder="dier@beispill.lu" />
+            </div>
+            <div>
+              <label for="organization" data-i18n="contact.orgLabel">Organisatioun</label>
+              <input id="organization" name="organization" type="text" required placeholder="Är ASBL oder Firma" />
+            </div>
+            <div>
+              <label for="topic" data-i18n="contact.topicLabel">Partnerschaftsinteressi</label>
+              <select id="topic" name="topic" required>
+                <option value="" disabled selected data-i18n="contact.topicSelect">Wielt eng Optioun</option>
+                <option value="entrepreneurship" data-i18n="contact.topicEntrepreneurship">Entrepreneurship &amp; Startups</option>
+                <option value="digital" data-i18n="contact.topicDigital">Digital Participatioun &amp; AI</option>
+                <option value="intercultural" data-i18n="contact.topicIntercultural">Interkulturell Austausch</option>
+                <option value="environmental" data-i18n="contact.topicEnvironmental">Ëmwelt a Klima</option>
+                <option value="funding" data-i18n="contact.topicFunding">Finanzéierung / Sponsoring</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" data-i18n="contact.messageLabel">Är Messag</label>
+              <textarea id="message" name="message" minlength="20" required placeholder="Beschreift wien Dir sidd, d'Iddi an d'Ziler."></textarea>
+            </div>
+            <div class="terms">
+              <input id="consent" type="checkbox" required />
+              <label for="consent" data-i18n="contact.consent">Ech stëmme mat der Dateschutzpolitik vum Coconut Luxembourg zou.</label>
+            </div>
+            <button type="submit" class="btn btn-primary" data-i18n="contact.submit">Messag ofschécken</button>
+            <div id="formMessage" aria-live="polite"></div>
+          </form>
+          <div class="card">
+            <h3 data-i18n="contact.supportTitle">Partner Ënnerstëtzung</h3>
+            <p data-i18n="contact.supportText">
+              Eis Koordinatiounsteam plangt Duebelchecking Reuniounen an deelt Projet-Canvasen mat neie Partneren. Mir bidden och duebel Sprooch Workshops (Lëtzebuergesch &amp; Englesch) fir effizient Start-Sessiounen.
+            </p>
+            <h4 data-i18n="contact.responseTitle">Äntwertzäiten</h4>
+            <ul>
+              <li data-i18n="contact.responseItem1">1-2 Deeg fir Partnerschaftsufroen</li>
+              <li data-i18n="contact.responseItem2">3 Deeg fir EU Konsortien</li>
+              <li data-i18n="contact.responseItem3">5 Deeg fir Ressourcen Ufro</li>
+            </ul>
+            <h4 data-i18n="contact.addressTitle">Büroadress</h4>
+            <p data-i18n="contact.addressText">19, rue de Bonnevoie, L-1260 Luxembourg</p>
+            <h4 data-i18n="contact.hoursTitle">Sprechstonnen</h4>
+            <p data-i18n="contact.hoursText">Méindes a Donneschdes vun 10:00 bis 16:00 Auer</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <strong>Coconut Luxembourg ASBL</strong>
+          <div data-i18n="footer.legal">Matgréngungsmember vum Coconutwork Youth Network.</div>
+        </div>
+        <div class="footer-links">
+          <a href="#resources" data-i18n="footer.documents">Dokumenter</a>
+          <a href="#contact" data-i18n="footer.contact">Kontakt</a>
+          <a href="#programs" data-i18n="footer.programs">Programmer</a>
+        </div>
+      </div>
+    </footer>
+
+    <button class="chatbot-toggle" id="chatbotToggle" data-i18n="chat.open">Chatbot</button>
+
+    <div class="chatbot-window" id="chatbotWindow" aria-live="polite">
+      <div class="chatbot-header">
+        <div>
+          <strong data-i18n="chat.title">Coconut Youth Chat</strong>
+          <div style="font-size: 0.85rem" data-i18n="chat.subtitle">Frot eis iwwer Programmen &amp; Méiglechkeeten</div>
+        </div>
+        <button id="chatbotClose" aria-label="Close chatbot" style="background: transparent; border: none; color: #fff; font-size: 1.4rem; cursor: pointer">&times;</button>
+      </div>
+      <div class="chatbot-messages" id="chatMessages"></div>
+      <form class="chatbot-input" id="chatbotForm">
+        <input type="text" id="chatInput" autocomplete="off" placeholder="Stellt Är Fro..." />
+        <button type="submit" data-i18n="chat.send">Schécken</button>
+      </form>
+    </div>
+
+    <script>
+      const translations = {
+        lb: {
+          "brand.tagline": "Empower Euro-Med Jugend duerch Aktioun",
+          "nav.programs": "Programmer",
+          "nav.projects": "Projeten",
+          "nav.team": "Team",
+          "nav.initiatives": "Initiativen",
+          "nav.resources": "Ressourcen",
+          "nav.partnerships": "Partnerschaften",
+          "nav.contact": "Kontakt",
+          "hero.heading": "Mir verbannen Jugendlech a Lëtzebuerg mat Euro-Med Chancen",
+          "hero.subheading": "Coconut Luxembourg (ASBL) ass den nationale Partner vum Coconutwork Netzwierk a bréngt innovativ non-formell Léieren un déi nächst Generatioun vun Entrepreneuren, Digital Changemakers an Ëmwelt Leaderen.",
+          "hero.ctaPrimary": "Entdeckt eis Projeten",
+          "hero.ctaSecondary": "Partner mat eis",
+          "programs.title": "Eise Léier-Ökosystem",
+          "programs.lead": "Duerch déi véier Prioritéitsberäicher vum Coconutwork Netzwierk begleede mir Jugendinitiativë vun der Iddi bis zur internationaler Uwendung, mat engem Fokus op nohaltege Wuesstem an interkultureller Kooperatioun.",
+          "success.title": "Wierkung a Succèsgeschichten",
+          "success.lead": "Eis Projeten an Austauschprogrammer bréngen Jugendorganisatiounen, Communautéiten a Partner zesummen fir konkret Resultater ze liwweren. Hei ass eng Auswiel vun de Geschichten, déi eis Missioun stäerken.",
+          "projects.title": "Portfolio vun 16 Coconut Luxembourg Projeten",
+          "projects.lead": "Eis Projeten decken Entrepreneurship, Interkulturellt Léieren, Digital Participatioun an Ëmwelt Nohaltegkeet of. Filtert fir déi Initiativen ze gesinn, déi Iech am meeschte inspiréieren.",
+          "social.title": "Sozial Medien Wänn",
+          "social.lead": "Verfollegt Live-Highlights vu jidderengem vun eisen 16 Projeten. Wielt e Projet an filtert no Plattform fir déi aktuell Aktivitéiten a Geschichten ze entdecken.",
+          "social.selectLabel": "Projet auswielen",
+          "team.title": "Eng divers a passionéiert Ekip",
+          "team.lead": "Mat iwwer 20 Länner Erfahrung féiert d'Ekip vum Coconut Luxembourg Projeten duerch Erasmus+, Horizon Europe an lokal Partnerschaften. Mir stäerken Jugendleit fir haaptsächlech gesellschaftlech Erausfuerderungen unzegoen.",
+          "initiatives.title": "Lokal Initiativen am ganze Land",
+          "initiatives.lead": "Eis Gemeinschaftsprogrammer verbannen Dierfer a Stied vu Lëtzebuerg. Duerch Pop-up Labs, Dialogserien a mentoresch Ënnerstëtzung brénge mir d'Jugendaarbecht an all Kantonen.",
+          "resources.title": "Ressourcen a Gouvernance",
+          "resources.lead": "Lued eis offiziell Dokumenter erof, fënnt Training Kits a sicht no Member-Informatiounen. Transparenz an Professionaliséierung stinn am Kär vun eiser ASBL-Struktur.",
+          "resources.usersTitle": "YouthWork Benotzerstruktur",
+          "resources.usersLead": "Mir verwalten en authentescht Benotzersystem fir Mentoren, Facilitatoren an Administrateuren. Dës Iwwersiicht weist eis aktuell Rollen a Fokusberäicher.",
+          "resources.userName": "Numm",
+          "resources.userRole": "Roll",
+          "resources.userFocus": "Fokusberäich",
+          "partnerships.title": "Partnerschaften a Kooperatiounen",
+          "partnerships.lead": "Eist Netzwierk ëmfaasst Finanzéierungsagenturen, ëffentlech Institutiounen, europäesch Plattformen a lokal Associatiounen. Zesummen halen mir Jugendprojeten am Beweegung.",
+          "contact.title": "Kontaktéiert eis Partnerschaftsteam",
+          "contact.lead": "Gitt an de Kontakt fir Kooperatiounen, EU Konsortiën oder Gemeinschaftsinitiativë virzeschloen. Mir äntweren bannent dräi Aarbechtsdeeg.",
+          "contact.nameLabel": "Vollen Numm",
+          "contact.emailLabel": "E-Mail",
+          "contact.orgLabel": "Organisatioun",
+          "contact.topicLabel": "Partnerschaftsinteressi",
+          "contact.topicSelect": "Wielt eng Optioun",
+          "contact.topicEntrepreneurship": "Entrepreneurship & Startups",
+          "contact.topicDigital": "Digital Participatioun & AI",
+          "contact.topicIntercultural": "Interkulturell Austausch",
+          "contact.topicEnvironmental": "Ëmwelt a Klima",
+          "contact.topicFunding": "Finanzéierung / Sponsoring",
+          "contact.messageLabel": "Är Messag",
+          "contact.consent": "Ech stëmme mat der Dateschutzpolitik vum Coconut Luxembourg zou.",
+          "contact.submit": "Messag ofschécken",
+          "contact.supportTitle": "Partner Ënnerstëtzung",
+          "contact.supportText": "Eis Koordinatiounsteam plangt Duebelchecking Reuniounen an deelt Projet-Canvasen mat neie Partneren. Mir bidden och duebel Sprooch Workshops (Lëtzebuergesch & Englesch) fir effizient Start-Sessiounen.",
+          "contact.responseTitle": "Äntwertzäiten",
+          "contact.responseItem1": "1-2 Deeg fir Partnerschaftsufroen",
+          "contact.responseItem2": "3 Deeg fir EU Konsortien",
+          "contact.responseItem3": "5 Deeg fir Ressourcen Ufro",
+          "contact.addressTitle": "Büroadress",
+          "contact.addressText": "19, rue de Bonnevoie, L-1260 Luxembourg",
+          "contact.hoursTitle": "Sprechstonnen",
+          "contact.hoursText": "Méindes a Donneschdes vun 10:00 bis 16:00 Auer",
+          "footer.legal": "Matgréngungsmember vum Coconutwork Youth Network.",
+          "footer.documents": "Dokumenter",
+          "footer.contact": "Kontakt",
+          "footer.programs": "Programmer",
+          "chat.open": "Chatbot",
+          "chat.title": "Coconut Youth Chat",
+          "chat.subtitle": "Frot eis iwwer Programmen & Méiglechkeeten",
+          "chat.send": "Schécken"
+        },
+        en: {
+          "brand.tagline": "Empowering Euro-Med youth through action",
+          "nav.programs": "Programs",
+          "nav.projects": "Projects",
+          "nav.team": "Team",
+          "nav.initiatives": "Initiatives",
+          "nav.resources": "Resources",
+          "nav.partnerships": "Partnerships",
+          "nav.contact": "Contact",
+          "hero.heading": "Connecting young people in Luxembourg with Euro-Med opportunities",
+          "hero.subheading": "Coconut Luxembourg (ASBL) is the national branch of the Coconutwork Network, bringing innovative non-formal education to the next generation of entrepreneurs, digital changemakers, and environmental leaders.",
+          "hero.ctaPrimary": "Explore our projects",
+          "hero.ctaSecondary": "Partner with us",
+          "programs.title": "Our learning ecosystem",
+          "programs.lead": "Through Coconutwork's four priority areas we guide youth initiatives from concept to international deployment, focusing on sustainable growth and intercultural cooperation.",
+          "success.title": "Impact and success stories",
+          "success.lead": "Our projects and exchanges bring youth organisations, communities, and partners together to deliver measurable outcomes. Explore the stories that power our mission.",
+          "projects.title": "Portfolio of 16 Coconut Luxembourg projects",
+          "projects.lead": "Our portfolio spans Entrepreneurship, Intercultural Learning, Digital Participation, and Environmental Sustainability. Filter to find the initiatives that inspire you most.",
+          "social.title": "Social media walls",
+          "social.lead": "Follow live highlights from each of our 16 projects. Pick a project and filter by platform to explore current activities and stories.",
+          "social.selectLabel": "Select a project",
+          "team.title": "A diverse and passionate team",
+          "team.lead": "With experience across 20+ countries, the Coconut Luxembourg team steers projects through Erasmus+, Horizon Europe, and local partnerships, empowering young people to tackle key societal challenges.",
+          "initiatives.title": "Local initiatives across Luxembourg",
+          "initiatives.lead": "Our community programs connect towns and villages across the country. Through pop-up labs, dialogue series, and mentoring we bring youth work to every canton.",
+          "resources.title": "Resources and governance",
+          "resources.lead": "Download official documents, find training kits, and review member information. Transparency and professional standards are central to our ASBL governance.",
+          "resources.usersTitle": "YouthWork user structure",
+          "resources.usersLead": "We maintain an authentic user system for mentors, facilitators, and administrators. This overview shows current roles and focus areas.",
+          "resources.userName": "Name",
+          "resources.userRole": "Role",
+          "resources.userFocus": "Focus area",
+          "partnerships.title": "Partnerships and collaborations",
+          "partnerships.lead": "Our network spans funding agencies, public institutions, European platforms, and local associations. Together we keep youth projects moving.",
+          "contact.title": "Connect with our partnerships team",
+          "contact.lead": "Reach out to co-create initiatives, join EU consortia, or propose community collaborations. We respond within three working days.",
+          "contact.nameLabel": "Full name",
+          "contact.emailLabel": "Email",
+          "contact.orgLabel": "Organisation",
+          "contact.topicLabel": "Partnership interest",
+          "contact.topicSelect": "Select an option",
+          "contact.topicEntrepreneurship": "Entrepreneurship & Startups",
+          "contact.topicDigital": "Digital participation & AI",
+          "contact.topicIntercultural": "Intercultural exchange",
+          "contact.topicEnvironmental": "Environment & climate",
+          "contact.topicFunding": "Funding / Sponsorship",
+          "contact.messageLabel": "Your message",
+          "contact.consent": "I agree with Coconut Luxembourg's data policy.",
+          "contact.submit": "Send message",
+          "contact.supportTitle": "Partnership support",
+          "contact.supportText": "Our coordination team schedules alignment meetings and shares project canvases with new partners. We also deliver bilingual workshops (Luxembourgish & English) for efficient kick-off sessions.",
+          "contact.responseTitle": "Response times",
+          "contact.responseItem1": "1-2 days for partnership requests",
+          "contact.responseItem2": "3 days for EU consortia",
+          "contact.responseItem3": "5 days for resource enquiries",
+          "contact.addressTitle": "Office address",
+          "contact.addressText": "19, rue de Bonnevoie, L-1260 Luxembourg",
+          "contact.hoursTitle": "Office hours",
+          "contact.hoursText": "Monday & Thursday from 10:00 to 16:00",
+          "footer.legal": "Founding member of the Coconutwork Youth Network.",
+          "footer.documents": "Documents",
+          "footer.contact": "Contact",
+          "footer.programs": "Programs",
+          "chat.open": "Chatbot",
+          "chat.title": "Coconut Youth Chat",
+          "chat.subtitle": "Ask us about programmes & opportunities",
+          "chat.send": "Send"
+        }
+      };
+
+      const programs = [
+        {
+          icon: "\u{1F4BC}",
+          title: {
+            lb: "Entrepreneurship Lab",
+            en: "Entrepreneurship Lab"
+          },
+          description: {
+            lb: "Mentoring fir Jugend Startups, Business Modell Workshops a Social Innovation Bootcamps an Zesummenaarbecht mat lokalen Inkubatoren.",
+            en: "Mentoring for youth startups, business model workshops, and social innovation bootcamps in collaboration with local incubators."
+          }
+        },
+        {
+          icon: "\u{1F30D}",
+          title: {
+            lb: "Interkulturell Brécken",
+            en: "Intercultural Bridges"
+          },
+          description: {
+            lb: "Euro-Med Austauschresidenzen, Multilingual Storytelling a Diplomacy Labs fir grenziwwerschreidend Zesummenhalt.",
+            en: "Euro-Med exchange residencies, multilingual storytelling, and diplomacy labs that strengthen cross-border cohesion."
+          }
+        },
+        {
+          icon: "\u{1F4BB}",
+          title: {
+            lb: "Digital Participation",
+            en: "Digital Participation"
+          },
+          description: {
+            lb: "Civic Tech Hackathons, Medienkompetenz Training an Digital Rights Clinics mat engem Fokus op inklusiv Tools.",
+            en: "Civic tech hackathons, media literacy trainings, and digital rights clinics focusing on inclusive tools."
+          }
+        },
+        {
+          icon: "\u{1F331}",
+          title: {
+            lb: "Green Futures",
+            en: "Green Futures"
+          },
+          description: {
+            lb: "Klimainnovatiouns Labs, Urban Gardening Hubs an Ëmwelt Advocacy mat Jugendberodungsréit.",
+            en: "Climate innovation labs, urban gardening hubs, and environmental advocacy with youth advisory councils."
+          }
+        }
+      ];
+
+      const impactMetrics = [
+        {
+          value: { lb: "3.200+", en: "3,200+" },
+          label: {
+            lb: "Jugendlech déi mir begleed hunn",
+            en: "Young people engaged"
+          }
+        },
+        {
+          value: { lb: "22", en: "22" },
+          label: {
+            lb: "Länner am Netzwierk",
+            en: "Countries in our network"
+          }
+        },
+        {
+          value: { lb: "48", en: "48" },
+          label: {
+            lb: "Langzäit Partnerschaften",
+            en: "Long-term partnerships"
+          }
+        },
+        {
+          value: { lb: "210", en: "210" },
+          label: {
+            lb: "Trainings- an Workshopdeeg",
+            en: "Training & workshop days"
+          }
+        }
+      ];
+
+      const successStories = [
+        {
+          title: {
+            lb: "GreenTech Incubator: vun Iddi zur EU Finanzéierung",
+            en: "GreenTech Incubator: from idea to EU funding"
+          },
+          description: {
+            lb: "Eist 6 Méint Programm huet 12 Jugendteams gehollef hir Klima-Léisungen ze validéieren. Véier Projeten hunn no der Presentatioun an Bréissel Erasmus+ Finanzéierung kritt.",
+            en: "Our six-month incubator supported 12 youth teams in validating their climate solutions. Four projects secured Erasmus+ funding after the Brussels showcase."
+          }
+        },
+        {
+          title: {
+            lb: "Digital Democracy Bootcamp mat 9 Gemengen",
+            en: "Digital Democracy Bootcamp with 9 municipalities"
+          },
+          description: {
+            lb: "Mir hunn Civic Tech Tools gebaut déi 2.400 Stëmmen an enger lokaler Agenda 2030 Konsultatioun gesammelt hunn – eng éischt fir d'Gemengepartnerschaft.",
+            en: "We co-created civic tech tools that collected 2,400 youth votes during a local Agenda 2030 consultation – a first for the municipal partnership."
+          }
+        },
+        {
+          title: {
+            lb: "Interkulturell Residenz zu Esch-Uelzecht",
+            en: "Intercultural residency in Esch-sur-Alzette"
+          },
+          description: {
+            lb: "28 Participante vu 11 Länner hunn eng Woch laang Kulturfestivals an digitale Storytelling Projeten entwéckelt, déi elo vun lokale Lycéeën adaptéiert ginn.",
+            en: "28 participants from 11 countries co-designed week-long cultural festivals and digital storytelling projects now replicated by local high schools."
+          }
+        }
+      ];
+
+      const projects = [
+        {
+          id: "circular-start-lab",
+          category: "Entrepreneurship",
+          title: {
+            lb: "Circular Start Lab",
+            en: "Circular Start Lab"
+          },
+          description: {
+            lb: "Entrepreneurship Coaching fir jonker Innovateuren déi Offall an nei Produkter ëmwandelen, mat engem Fokus op lëtzebuergesch Handwierkstraditiounen.",
+            en: "Entrepreneurship coaching for young innovators transforming waste into new products while honouring Luxembourg craft traditions."
+          },
+          year: 2025,
+          location: "Luxembourg City",
+          socialPosts: [
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Prototyp Dag! Eis Teams testen nei Upcycling Ideen am Makerspace vum Circular Start Lab.",
+                en: "Prototype day! Teams at Circular Start Lab are testing new upcycling ideas at the makerspace."
+              }
+            },
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Partnerschaft mat dem House of Entrepreneurship fir Green Pitch Méint ze starten.",
+                en: "Partnership signed with the House of Entrepreneurship launching our Green Pitch month."
+              }
+            }
+          ]
+        },
+        {
+          id: "mediatech-exchange",
+          category: "Intercultural Learning",
+          title: {
+            lb: "Mediatech Youth Exchange",
+            en: "Mediatech Youth Exchange"
+          },
+          description: {
+            lb: "Euro-Med Austausch mat Fokus op Medienkompetenz an antirassisteschen Narrativen, organiséiert zu Diddeleng.",
+            en: "Euro-Med exchange focusing on media literacy and anti-racist narratives, hosted in Dudelange."
+          },
+          year: 2024,
+          location: "Dudelange",
+          socialPosts: [
+            {
+              platform: "Facebook",
+              content: {
+                lb: "Live Podcast Sessioun iwwer narrativen Gerechtigkeit mam Team vu Tunis.",
+                en: "Live podcast session on narrative justice with the Tunis delegation."
+              }
+            },
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Storytelling Circle zu Diddeleng: 8 Länner deelen hir Medie Kompetenzen.",
+                en: "Storytelling circle in Dudelange with 8 countries sharing media skills."
+              }
+            }
+          ]
+        },
+        {
+          id: "lux-green-labs",
+          category: "Environmental Sustainability",
+          title: {
+            lb: "Lux Green Labs",
+            en: "Lux Green Labs"
+          },
+          description: {
+            lb: "Laboratoiren fir urbant Gaardenbau a Biodiversitéit mat Lycéeën zu Differdange a Bartreng.",
+            en: "Urban gardening and biodiversity labs with high schools in Differdange and Bertrange."
+          },
+          year: 2025,
+          location: "Differdange",
+          socialPosts: [
+            {
+              platform: "YouTube",
+              content: {
+                lb: "Mini-Dokumentatioun iwwer Schüler déi vertikal Gäert bauen.",
+                en: "Mini-documentary: students building vertical gardens across campuses."
+              }
+            },
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Eise Smart Kompost Sensor huet 30% Offall reduzéiert.",
+                en: "Our smart compost sensor helped cut organic waste by 30%."
+              }
+            }
+          ]
+        },
+        {
+          id: "digital-bridges-hackathon",
+          category: "Digital Participation",
+          title: {
+            lb: "Digital Bridges Hackathon",
+            en: "Digital Bridges Hackathon"
+          },
+          description: {
+            lb: "48 Stonnen Hackathon zu Belval fir Civic Tech Tools mat Jugenddelegatioune vu Portugal, Marokko a Lëtzebuerg.",
+            en: "48-hour hackathon in Belval co-creating civic tech tools with youth delegations from Portugal, Morocco, and Luxembourg."
+          },
+          year: 2025,
+          location: "Esch-Belval",
+          socialPosts: [
+            {
+              platform: "Twitter",
+              content: {
+                lb: "Gewënnerteam 'Policy Pulse' huet eng Participatiounsapp fir Gemengen gebaut.",
+                en: "Winning team 'Policy Pulse' built a participation app for municipalities."
+              }
+            },
+            {
+              platform: "YouTube",
+              content: {
+                lb: "Highlights vum Final Pitch am Belval Learning Centre.",
+                en: "Highlights from the final pitch at Belval Learning Centre."
+              }
+            }
+          ]
+        },
+        {
+          id: "ecomentors-fellowship",
+          category: "Environmental Sustainability",
+          title: {
+            lb: "EcoMentors Fellowship",
+            en: "EcoMentors Fellowship"
+          },
+          description: {
+            lb: "12 Méint Fellowship déi Jugendtrainer*innen zu Klima Coachë qualifizéiert a Schoulen duerch CO2 Auditen begleed.",
+            en: "12-month fellowship training youth workers as climate coaches to accompany schools through CO2 audits."
+          },
+          year: 2023,
+          location: "Ettelbruck",
+          socialPosts: [
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Eise Fellow Rasa deelt wéi d'Schoulen hir Energiedaten analyséieren.",
+                en: "Our fellow Rasa shares how schools analyse their energy data."
+              }
+            },
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Klima Labor am National Naturmusée mat 40 Participanten.",
+                en: "Climate lab at the National Museum of Natural History with 40 participants."
+              }
+            }
+          ]
+        },
+        {
+          id: "colab-social-ventures",
+          category: "Entrepreneurship",
+          title: {
+            lb: "CoLab Social Ventures",
+            en: "CoLab Social Ventures"
+          },
+          description: {
+            lb: "Multi-stad Inkubator fir Sozial Entreprisen mat Fokus op inklusiv Finanzéierungsléisungen.",
+            en: "Multi-city incubator for social enterprises focusing on inclusive financing solutions."
+          },
+          year: 2024,
+          location: "Esch-sur-Alzette",
+          socialPosts: [
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Mentee Derrick presentéiert de Microcredit Navigator Tool.",
+                en: "Mentee Derrick presents the Microcredit Navigator tool."
+              }
+            },
+            {
+              platform: "Facebook",
+              content: {
+                lb: "Coworking Week mat Workshops zu Impact Measurement.",
+                en: "Coworking week featuring impact measurement workshops."
+              }
+            }
+          ]
+        },
+        {
+          id: "cross-border-dialogue",
+          category: "Intercultural Learning",
+          title: {
+            lb: "Cross-Border Dialogue Series",
+            en: "Cross-Border Dialogue Series"
+          },
+          description: {
+            lb: "Dialogevenementer tëscht Lëtzebuerg, Sarrebruck a Metz fir interreligiéis Verständnis a Jugendpolitik.",
+            en: "Dialogue events between Luxembourg, Saarbrücken, and Metz focusing on interreligious understanding and youth policy."
+          },
+          year: 2025,
+          location: "Grevenmacher",
+          socialPosts: [
+            {
+              platform: "Twitter",
+              content: {
+                lb: "Quotes vum Panel iwwer Friddensbildung a lokaler Participatioun.",
+                en: "Panel quotes on peace education and local participation."
+              }
+            },
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Visuell Notze vum \"Dialog Mural\" co-geschaf vun 3 Stied.",
+                en: "Visual notes of the 'Dialogue Mural' co-created by three cities."
+              }
+            }
+          ]
+        },
+        {
+          id: "sustainable-schools-accelerator",
+          category: "Environmental Sustainability",
+          title: {
+            lb: "Sustainable Schools Accelerator",
+            en: "Sustainable Schools Accelerator"
+          },
+          description: {
+            lb: "Nohalteg Schoulstrategien mat Gemengepartnerschaften, inklusiv Energietransitiounsplang.",
+            en: "Sustainable school strategies with municipal partnerships, including energy transition roadmaps."
+          },
+          year: 2024,
+          location: "Mersch",
+          socialPosts: [
+            {
+              platform: "Facebook",
+              content: {
+                lb: "Pilot-Schoul a Mersch presentéiert hiren Null-Ofall Aktiounsplang.",
+                en: "Pilot school in Mersch presents its zero-waste action plan."
+              }
+            },
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Webinar iwwert Klima Gouvernance mat EU-Kommissioun Gäscht.",
+                en: "Webinar on climate governance featuring European Commission guests."
+              }
+            }
+          ]
+        },
+        {
+          id: "digital-democracy-bootcamp",
+          category: "Digital Participation",
+          title: {
+            lb: "Digital Democracy Bootcamp",
+            en: "Digital Democracy Bootcamp"
+          },
+          description: {
+            lb: "Jugendlech testen AI Moderatioun a Participatiounsapps fir lokal Agenda 2030 Prozesser.",
+            en: "Young people test AI moderation and participation apps for local Agenda 2030 processes."
+          },
+          year: 2023,
+          location: "Clervaux",
+          socialPosts: [
+            {
+              platform: "Instagram",
+              content: {
+                lb: "AI Moderatiounslab mat Fräiwëllegen aus dem Norden.",
+                en: "AI moderation lab with volunteers from the north of Luxembourg."
+              }
+            },
+            {
+              platform: "YouTube",
+              content: {
+                lb: "Recap: Youth Presentatiounen am Clervaux Kulturschlass.",
+                en: "Recap: youth presentations at the Clervaux culture castle."
+              }
+            }
+          ]
+        },
+        {
+          id: "heritage-storytellers",
+          category: "Intercultural Learning",
+          title: {
+            lb: "Heritage Storytellers",
+            en: "Heritage Storytellers"
+          },
+          description: {
+            lb: "Immersiv Storytelling Projete mat Muséeën, déi oral Geschicht a digital Archiven zesummebréngen.",
+            en: "Immersive storytelling projects with museums blending oral history and digital archives."
+          },
+          year: 2022,
+          location: "Wiltz",
+          socialPosts: [
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Workshop am Norden: Jonker interviewen hir Grousselteren.",
+                en: "Northern workshop: young people interview their grandparents."
+              }
+            },
+            {
+              platform: "YouTube",
+              content: {
+                lb: "Virtuell Tour duerch déi nei digitale Muséessammlung.",
+                en: "Virtual tour through the new digital museum collection."
+              }
+            }
+          ]
+        },
+        {
+          id: "inclusive-makers-camp",
+          category: "Digital Participation",
+          title: {
+            lb: "Inclusive Makers Camp",
+            en: "Inclusive Makers Camp"
+          },
+          description: {
+            lb: "STEM Camp mat Accessibilitéit als Kär, entwéckelt inklusiv Open-Source Tools fir Jugendzentren.",
+            en: "STEM camp centred on accessibility, developing inclusive open-source tools for youth centres."
+          },
+          year: 2024,
+          location: "Schifflange",
+          socialPosts: [
+            {
+              platform: "Instagram",
+              content: {
+                lb: "3D-gedréckte Kommunikationshëllef entwéckelt vum Camp Team.",
+                en: "3D-printed communication aid developed by the camp team."
+              }
+            },
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Artikel iwwert inklusiv Coding Standards an Jugendaarbecht.",
+                en: "Article about inclusive coding standards in youth work."
+              }
+            }
+          ]
+        },
+        {
+          id: "climate-resilience-forum",
+          category: "Environmental Sustainability",
+          title: {
+            lb: "Climate Resilience Forum",
+            en: "Climate Resilience Forum"
+          },
+          description: {
+            lb: "Jährleche Forum zu Klimaadaptatioun mat Studiebesich bei regionale Schutzprojeten.",
+            en: "Annual forum on climate adaptation featuring study visits to regional protection projects."
+          },
+          year: 2025,
+          location: "Remich",
+          socialPosts: [
+            {
+              platform: "YouTube",
+              content: {
+                lb: "Panel Diskussioun iwwer Waasserresilienz a Wéngerten.",
+                en: "Panel discussion on water resilience in the Moselle vineyards."
+              }
+            },
+            {
+              platform: "Twitter",
+              content: {
+                lb: "Highlights aus dem Climate Policy Lab mat 7 Kommunen.",
+                en: "Highlights from the climate policy lab with seven municipalities."
+              }
+            }
+          ]
+        },
+        {
+          id: "women-in-tech-catalyst",
+          category: "Entrepreneurship",
+          title: {
+            lb: "Women in Tech Catalyst",
+            en: "Women in Tech Catalyst"
+          },
+          description: {
+            lb: "Accelerator Programm fir jonke Fraen am Tech Beräich mat Mentoring aus 5 EU Länner.",
+            en: "Accelerator programme for young women in tech with mentoring from five EU countries."
+          },
+          year: 2023,
+          location: "Luxembourg City",
+          socialPosts: [
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Keynote vun Dr. Gilles Evrard Essuman iwwer Gender a Leadership.",
+                en: "Keynote by Dr. Gilles Evrard Essuman on gender and leadership."
+              }
+            },
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Pitch Night Highlights mat Startups aus dem Accelerator.",
+                en: "Pitch night highlights featuring startups from the accelerator."
+              }
+            }
+          ]
+        },
+        {
+          id: "agro-innovation-residency",
+          category: "Entrepreneurship",
+          title: {
+            lb: "Agro-Innovation Residency",
+            en: "Agro-Innovation Residency"
+          },
+          description: {
+            lb: "Residency Programm am Norden, wou Jugend Entrepreneuren digital Landwirtschaftsléisungen entwéckelen.",
+            en: "Residency programme in the north where youth entrepreneurs design digital agriculture solutions."
+          },
+          year: 2022,
+          location: "Diekirch",
+          socialPosts: [
+            {
+              platform: "Facebook",
+              content: {
+                lb: "Gemeinsame Feldtesten mat Partnerhäff am Éislek.",
+                en: "Joint field trials with partner farms in Éislek."
+              }
+            },
+            {
+              platform: "YouTube",
+              content: {
+                lb: "Interview: Jonk Entrepreneuren iwwer Smart Irrigatioun.",
+                en: "Interview: young entrepreneurs discussing smart irrigation."
+              }
+            }
+          ]
+        },
+        {
+          id: "mindful-cities-challenge",
+          category: "Intercultural Learning",
+          title: {
+            lb: "Mindful Cities Challenge",
+            en: "Mindful Cities Challenge"
+          },
+          description: {
+            lb: "Stadlab dat Kultur- a Gesondheetsinitiativen fusionéiert fir inklusiv urban Raim ze schafen.",
+            en: "City lab blending cultural and wellbeing initiatives to build inclusive urban spaces."
+          },
+          year: 2024,
+          location: "Luxembourg City",
+          socialPosts: [
+            {
+              platform: "Instagram",
+              content: {
+                lb: "Silent Walk duerch de Grund mat Partneren aus Bologna.",
+                en: "Silent walk through Grund with partners from Bologna."
+              }
+            },
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Gemeinsam Positionspabeier iwwer mental Gesondheet an urban Politik.",
+                en: "Joint position paper on mental health and urban policy."
+              }
+            }
+          ]
+        },
+        {
+          id: "youth-digital-ambassadors",
+          category: "Digital Participation",
+          title: {
+            lb: "Youth Digital Ambassadors",
+            en: "Youth Digital Ambassadors"
+          },
+          description: {
+            lb: "Programm fir Digital Mentor*innen déi Senior*innen a Migranten Online Kompetenzen vermëttelen.",
+            en: "Programme training digital mentors who support seniors and newcomers with online skills."
+          },
+          year: 2022,
+          location: "Echternach",
+          socialPosts: [
+            {
+              platform: "Facebook",
+              content: {
+                lb: "Digital Café mat 45 Participanten am lokale Kulturhaus.",
+                en: "Digital café with 45 participants at the local culture house."
+              }
+            },
+            {
+              platform: "LinkedIn",
+              content: {
+                lb: "Best Practice Artikel iwwer intergenerational Digital Léieren.",
+                en: "Best practice article on intergenerational digital learning."
+              }
+            }
+          ]
+        }
+      ];
+      const socialPlatforms = ["All", "Instagram", "Facebook", "LinkedIn", "YouTube", "Twitter"];
+
+      const initiatives = [
+        {
+          title: {
+            lb: "Youth Commons Ettelbruck",
+            en: "Youth Commons Ettelbruck"
+          },
+          description: {
+            lb: "Pop-up Laboratoire fir Landwirtschaft Innovatioun mat lokale Produzenten a jonke Fuerscher.",
+            en: "Pop-up lab for agricultural innovation connecting local producers with young researchers."
+          }
+        },
+        {
+          title: {
+            lb: "Digital Inclusion Bus",
+            en: "Digital Inclusion Bus"
+          },
+          description: {
+            lb: "Reesenden Tech Hub deen all Kantonen am Land besicht a praktesch Trainings ubitt.",
+            en: "Travelling tech hub visiting each canton to deliver hands-on trainings."
+          }
+        },
+        {
+          title: {
+            lb: "Escher Youth Climate Cafés",
+            en: "Esch Youth Climate Cafés"
+          },
+          description: {
+            lb: "Monatlech Diskussiounen zu Klima- a Gerechtigkeitsthemen am Escher Kulturfabrik.",
+            en: "Monthly dialogues on climate and justice at Kulturfabrik Esch."
+          }
+        },
+        {
+          title: {
+            lb: "North Meets South Dialog",
+            en: "North Meets South Dialogue"
+          },
+          description: {
+            lb: "Series vu Austauschdeeg tëscht Jugendhaiser aus dem Norden an dem Minett.",
+            en: "Exchange days bringing youth centres from the north and the Minett region together."
+          }
+        },
+        {
+          title: {
+            lb: "Community Impact Studio",
+            en: "Community Impact Studio"
+          },
+          description: {
+            lb: "Design Sprint Format fir lokal Associatiounen déi nei Services fir Jugend entwéckelen.",
+            en: "Design sprint format for local associations to co-create new youth services."
+          }
+        },
+        {
+          title: {
+            lb: "Eco Trails Lëtzebuerg",
+            en: "Eco Trails Luxembourg"
+          },
+          description: {
+            lb: "Guidéiert Naturwanderungen mat Klimaaktivitéiten a Citizen Science Methoden.",
+            en: "Guided nature walks including climate action activities and citizen science methods."
+          }
+        }
+      ];
+
+      const resources = [
+        {
+          title: {
+            lb: "Joresrapport 2024",
+            en: "Annual Report 2024"
+          },
+          description: {
+            lb: "Finanziell Transparenz, Projetresultater a Partnerfeedback an engem detailléierte Bericht.",
+            en: "Financial transparency, project outcomes, and partner feedback in one detailed report."
+          },
+          type: "PDF",
+          url: "#"
+        },
+        {
+          title: {
+            lb: "Gouvernance Charta",
+            en: "Governance Charter"
+          },
+          description: {
+            lb: "Richtlinne vun der ASBL, Rollen vun der Verwaltungsrot an Dateschutz Richtlinnen.",
+            en: "Association guidelines, board roles, and data protection policies."
+          },
+          type: "PDF",
+          url: "#"
+        },
+        {
+          title: {
+            lb: "Training Toolkit: Digital Participation",
+            en: "Training Toolkit: Digital Participation"
+          },
+          description: {
+            lb: "Modular Workshop Packs mat Übungen a Checklisten fir Jugendtrainer.",
+            en: "Modular workshop packs with exercises and checklists for youth facilitators."
+          },
+          type: "ZIP",
+          url: "#"
+        },
+        {
+          title: {
+            lb: "Coconutwork Projekt Canvas",
+            en: "Coconutwork Project Canvas"
+          },
+          description: {
+            lb: "Strategescht Instrument fir Projetplanung, Risikoanalyse a Wierkungsmapping.",
+            en: "Strategic tool for project planning, risk analysis, and impact mapping."
+          },
+          type: "DOCX",
+          url: "#"
+        }
+      ];
+
+      const partnerships = [
+        {
+          title: {
+            lb: "Finanzéierungspartner",
+            en: "Funding partners"
+          },
+          description: {
+            lb: "Erasmus+ National Agentur Lëtzebuerg, Fondation de Luxembourg, Œuvre Nationale de Secours Grande-Duchesse Charlotte.",
+            en: "Erasmus+ National Agency Luxembourg, Fondation de Luxembourg, Œuvre Nationale de Secours Grande-Duchesse Charlotte."
+          },
+          tags: ["Erasmus+", "Fondation", "National"],
+          type: "funding"
+        },
+        {
+          title: {
+            lb: "Institutiounell Partner",
+            en: "Institutional partners"
+          },
+          description: {
+            lb: "Ministère de l'Éducation Nationale, Ville de Luxembourg, Maison de l'Europe.",
+            en: "Ministère de l'Éducation Nationale, City of Luxembourg, Maison de l'Europe."
+          },
+          tags: ["Gouvernement", "Stad", "EU"],
+          type: "institutional"
+        },
+        {
+          title: {
+            lb: "Netzwierk a Cluster",
+            en: "Networks & clusters"
+          },
+          description: {
+            lb: "Coconutwork Network, Youthproaktiv Madrid, Mediterranean Youth Forum, Climate KIC Alumni.",
+            en: "Coconutwork Network, Youthproaktiv Madrid, Mediterranean Youth Forum, Climate KIC Alumni."
+          },
+          tags: ["European", "Youth", "Climate"],
+          type: "network"
+        },
+        {
+          title: {
+            lb: "Lokal Kooperatiounen",
+            en: "Local collaborations"
+          },
+          description: {
+            lb: "FabLab Esch, Impact Hub Luxembourg, Transition Minett, Rotondes.",
+            en: "FabLab Esch, Impact Hub Luxembourg, Transition Minett, Rotondes."
+          },
+          tags: ["Community", "Innovation", "Culture"],
+          type: "local"
+        }
+      ];
+
+      const team = [
+        {
+          initials: "GE",
+          name: "Dr. Gilles Evrard Essuman",
+          role: {
+            lb: "President",
+            en: "President"
+          },
+          bio: {
+            lb: "Dr. Essuman ass en Expert fir Jugendparticipatioun an international Kooperatioun. Hien huet en Doktorat an Europäescher Studien vun der Universitéit Lëtzebuerg an iwwer 15 Joer Erfahrung als Projet Lead fir Erasmus+ an Horizon Europe Konsortien.",
+            en: "Dr. Essuman is an expert in youth participation and international cooperation. He holds a PhD in European Studies from the University of Luxembourg and has over 15 years' experience leading Erasmus+ and Horizon Europe consortia."
+          }
+        },
+        {
+          initials: "FM",
+          name: "Fahd Mohammadi",
+          role: {
+            lb: "Koordinator & Projet Manager",
+            en: "Coordinator & Project Manager"
+          },
+          bio: {
+            lb: "Fahd féiert d'Digital Participation Programmer a betreit Innovatiounsmethoden. Hien huet a méi wéi 20 Länner Jugendprojeten ëmgesat an ass zertifizéierte Design Thinking Facilitator.",
+            en: "Fahd steers our digital participation programmes and oversees innovation methodologies. He has delivered youth projects in over 20 countries and is a certified design thinking facilitator."
+          }
+        },
+        {
+          initials: "DV",
+          name: "Derrick S. Vormawor",
+          role: {
+            lb: "Projet Manager",
+            en: "Project Manager"
+          },
+          bio: {
+            lb: "Derrick fokusséiert sech op Entrepreneurship an Sozial Innovatioun. Hien huet Mikrofinanz Strukturen an Ghana a Lëtzebuerg begleet a schafft mat Partneren un nohaltege Geschäftsmodeller.",
+            en: "Derrick focuses on entrepreneurship and social innovation. He has supported microfinance structures in Ghana and Luxembourg and co-creates sustainable business models with partners."
+          }
+        },
+        {
+          initials: "RL",
+          name: "Rasa Liepina",
+          role: {
+            lb: "Social Media Koordinatorin",
+            en: "Social Media Coordinator"
+          },
+          bio: {
+            lb: "Rasa féiert d'Kommunikatioun vun eisen 16 Projeten a baut Social Storytelling Formater mat jonke Reporter*innen op. Si spezialiséiert sech op Plattform Analysen an Engagementstrategie.",
+            en: "Rasa leads communications across our 16 projects and co-designs social storytelling formats with youth reporters. She specialises in platform analytics and engagement strategies."
+          }
+        }
+      ];
+
+      const users = [
+        {
+          name: "Amina Traoré",
+          role: {
+            lb: "Mentorin",
+            en: "Mentor"
+          },
+          focus: {
+            lb: "Entrepreneurship Lab",
+            en: "Entrepreneurship Lab"
+          }
+        },
+        {
+          name: "Luca Ferreira",
+          role: {
+            lb: "Facilitator",
+            en: "Facilitator"
+          },
+          focus: {
+            lb: "Digital Participation",
+            en: "Digital Participation"
+          }
+        },
+        {
+          name: "Mila Haddad",
+          role: {
+            lb: "Mentorin",
+            en: "Mentor"
+          },
+          focus: {
+            lb: "Interkulturell Brécken",
+            en: "Intercultural Bridges"
+          }
+        },
+        {
+          name: "Tom Becker",
+          role: {
+            lb: "Administrator",
+            en: "Administrator"
+          },
+          focus: {
+            lb: "Gouvernance & Ressourcen",
+            en: "Governance & Resources"
+          }
+        }
+      ];
+      let currentLanguage = "lb";
+      let selectedCategory = "All";
+      let selectedPlatform = "All";
+      let selectedProjectId = projects[0].id;
+      const contactMessages = [];
+
+      const metricContainer = document.getElementById("impactMetrics");
+      const programContainer = document.getElementById("programCards");
+      const successContainer = document.getElementById("successStories");
+      const projectGrid = document.getElementById("projectGrid");
+      const projectFilters = document.getElementById("projectFilters");
+      const initiativesGrid = document.getElementById("initiativesGrid");
+      const resourcesList = document.getElementById("resourcesList");
+      const partnersList = document.getElementById("partnersList");
+      const teamGrid = document.getElementById("teamGrid");
+      const projectSelect = document.getElementById("projectSelect");
+      const platformFilters = document.getElementById("platformFilters");
+      const socialPostsContainer = document.getElementById("socialPosts");
+      const userTable = document.getElementById("userTable");
+
+      function createElement(tag, className, content) {
+        const el = document.createElement(tag);
+        if (className) el.className = className;
+        if (content !== undefined) {
+          if (typeof content === "string") {
+            el.innerHTML = content;
+          } else {
+            el.appendChild(content);
+          }
+        }
+        return el;
+      }
+
+      function renderMetrics() {
+        metricContainer.innerHTML = "";
+        impactMetrics.forEach(metric => {
+          const card = createElement("div", "stat-card");
+          const value = createElement("h3");
+          value.textContent = metric.value[currentLanguage];
+          const label = createElement("p");
+          label.textContent = metric.label[currentLanguage];
+          card.append(value, label);
+          metricContainer.appendChild(card);
+        });
+      }
+
+      function renderPrograms() {
+        programContainer.innerHTML = "";
+        programs.forEach(program => {
+          const card = createElement("div", "card");
+          const icon = createElement("div", "program-icon");
+          icon.textContent = program.icon;
+          const title = createElement("h3");
+          title.textContent = program.title[currentLanguage];
+          const desc = createElement("p");
+          desc.textContent = program.description[currentLanguage];
+          card.append(icon, title, desc);
+          programContainer.appendChild(card);
+        });
+      }
+
+      function renderSuccessStories() {
+        successContainer.innerHTML = "";
+        successStories.forEach(story => {
+          const card = createElement("div", "card");
+          const title = createElement("h3");
+          title.textContent = story.title[currentLanguage];
+          const desc = createElement("p");
+          desc.textContent = story.description[currentLanguage];
+          card.append(title, desc);
+          successContainer.appendChild(card);
+        });
+      }
+
+      function renderProjectFilters() {
+        const categories = ["All", ...new Set(projects.map(project => project.category))];
+        projectFilters.innerHTML = "";
+        categories.forEach(category => {
+          const label = category === "All" ? (currentLanguage === "lb" ? "All Projeten" : "All projects") : translateCategory(category);
+          const button = createElement("button", "filter-btn", label);
+          button.dataset.category = category;
+          if (category === selectedCategory) button.classList.add("active");
+          button.addEventListener("click", () => {
+            selectedCategory = category;
+            document.querySelectorAll("#projectFilters .filter-btn").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+            renderProjects();
+          });
+          projectFilters.appendChild(button);
+        });
+      }
+
+      function translateCategory(category) {
+        const mapping = {
+          Entrepreneurship: {
+            lb: "Entrepreneurship",
+            en: "Entrepreneurship"
+          },
+          "Intercultural Learning": {
+            lb: "Interkulturellt Léieren",
+            en: "Intercultural Learning"
+          },
+          "Digital Participation": {
+            lb: "Digital Participatioun",
+            en: "Digital Participation"
+          },
+          "Environmental Sustainability": {
+            lb: "Ëmwelt Nohaltegkeet",
+            en: "Environmental Sustainability"
+          }
+        };
+        return (mapping[category] && mapping[category][currentLanguage]) || category;
+      }
+
+      function renderProjects() {
+        projectGrid.innerHTML = "";
+        projects
+          .filter(project => selectedCategory === "All" || project.category === selectedCategory)
+          .forEach(project => {
+            const card = createElement("div", "card project-card");
+            const image = createElement("div", "square-image", translateCategory(project.category));
+            const title = createElement("h3");
+            title.textContent = project.title[currentLanguage];
+            const desc = createElement("p");
+            desc.textContent = project.description[currentLanguage];
+            const meta = createElement("div", "project-meta");
+            const category = createElement("span", "badge", translateCategory(project.category));
+            const year = createElement("span", null, `${project.year}`);
+            const location = createElement("span", null, project.location);
+            meta.append(category, year, location);
+            card.append(image, title, desc, meta);
+            projectGrid.appendChild(card);
+          });
+      }
+
+      function populateProjectSelect() {
+        projectSelect.innerHTML = "";
+        projects.forEach(project => {
+          const option = document.createElement("option");
+          option.value = project.id;
+          option.textContent = project.title[currentLanguage];
+          if (project.id === selectedProjectId) option.selected = true;
+          projectSelect.appendChild(option);
+        });
+      }
+
+      function renderPlatformFilters() {
+        platformFilters.innerHTML = "";
+        socialPlatforms.forEach(platform => {
+          const label = platform === "All" ? (currentLanguage === "lb" ? "All Plattformen" : "All platforms") : platform;
+          const button = createElement("button", "filter-btn", label);
+          button.dataset.platform = platform;
+          if (platform === selectedPlatform) button.classList.add("active");
+          button.addEventListener("click", () => {
+            selectedPlatform = platform;
+            document.querySelectorAll("#platformFilters .filter-btn").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+            renderSocialPosts();
+          });
+          platformFilters.appendChild(button);
+        });
+      }
+
+      function renderSocialPosts() {
+        socialPostsContainer.innerHTML = "";
+        const project = projects.find(p => p.id === selectedProjectId);
+        if (!project) return;
+        let posts = project.socialPosts;
+        if (selectedPlatform !== "All") {
+          posts = posts.filter(post => post.platform === selectedPlatform);
+        }
+        if (!posts.length) {
+          const emptyState = createElement("div", "card", currentLanguage === "lb" ? "Keng Bäiträg fir dës Filter." : "No posts for this filter yet.");
+          socialPostsContainer.appendChild(emptyState);
+          return;
+        }
+        posts.forEach(post => {
+          const card = createElement("div", "social-card");
+          const platform = createElement("div", "social-platform", post.platform);
+          const content = createElement("p");
+          content.textContent = post.content[currentLanguage];
+          card.append(platform, content);
+          socialPostsContainer.appendChild(card);
+        });
+      }
+
+      function renderInitiatives() {
+        initiativesGrid.innerHTML = "";
+        initiatives.forEach(initiative => {
+          const card = createElement("div", "initiative-card");
+          const title = createElement("h3");
+          title.textContent = initiative.title[currentLanguage];
+          const desc = createElement("p");
+          desc.textContent = initiative.description[currentLanguage];
+          card.append(title, desc);
+          initiativesGrid.appendChild(card);
+        });
+      }
+
+      function renderResources() {
+        resourcesList.innerHTML = "";
+        resources.forEach(resource => {
+          const item = createElement("div", "resource-item");
+          const title = createElement("h3");
+          title.textContent = resource.title[currentLanguage];
+          const desc = createElement("p");
+          desc.textContent = resource.description[currentLanguage];
+          const link = createElement("a");
+          link.href = resource.url;
+          link.textContent = currentLanguage === "lb" ? "Eroflueden" : "Download";
+          link.className = "btn btn-primary";
+          link.style.width = "fit-content";
+          const meta = createElement("div", "resource-meta");
+          meta.append(createElement("span", null, resource.type));
+          item.append(title, desc, link, meta);
+          resourcesList.appendChild(item);
+        });
+      }
+
+      function renderPartners() {
+        partnersList.innerHTML = "";
+        partnerships.forEach(partner => {
+          const item = createElement("div", "partner-item");
+          const title = createElement("h3");
+          title.textContent = partner.title[currentLanguage];
+          const desc = createElement("p");
+          desc.textContent = partner.description[currentLanguage];
+          const tags = createElement("div", "partner-tags");
+          partner.tags.forEach(tag => {
+            tags.append(createElement("span", null, tag));
+          });
+          item.append(title, desc, tags);
+          partnersList.appendChild(item);
+        });
+      }
+
+      function renderTeam() {
+        teamGrid.innerHTML = "";
+        team.forEach(member => {
+          const card = createElement("div", "team-card");
+          const photo = createElement("div", "team-photo", member.initials);
+          const name = createElement("h3");
+          name.textContent = member.name;
+          const role = createElement("div", "team-role", member.role[currentLanguage]);
+          const bio = createElement("p");
+          bio.textContent = member.bio[currentLanguage];
+          card.append(photo, name, role, bio);
+          teamGrid.appendChild(card);
+        });
+      }
+
+      function renderUsers() {
+        userTable.innerHTML = "";
+        users.forEach(user => {
+          const row = document.createElement("tr");
+          const name = document.createElement("td");
+          name.textContent = user.name;
+          const role = document.createElement("td");
+          role.textContent = user.role[currentLanguage];
+          const focus = document.createElement("td");
+          focus.textContent = user.focus[currentLanguage];
+          row.append(name, role, focus);
+          userTable.appendChild(row);
+        });
+      }
+
+      function applyTranslations() {
+        document.querySelectorAll("[data-i18n]").forEach(element => {
+          const key = element.getAttribute("data-i18n");
+          const translation = translations[currentLanguage][key];
+          if (translation) {
+            element.textContent = translation;
+          }
+        });
+        document.documentElement.lang = currentLanguage;
+      }
+
+      function renderAll() {
+        applyTranslations();
+        renderMetrics();
+        renderPrograms();
+        renderSuccessStories();
+        renderProjectFilters();
+        renderProjects();
+        populateProjectSelect();
+        renderPlatformFilters();
+        renderSocialPosts();
+        renderTeam();
+        renderInitiatives();
+        renderResources();
+        renderPartners();
+        renderUsers();
+      }
+
+      const languageToggle = document.getElementById("languageToggle");
+      languageToggle.addEventListener("click", () => {
+        currentLanguage = currentLanguage === "lb" ? "en" : "lb";
+        document
+          .querySelectorAll(".language-toggle span")
+          .forEach(span => span.classList.toggle("active", span.dataset.lang === currentLanguage));
+        renderAll();
+      });
+
+      projectSelect.addEventListener("change", event => {
+        selectedProjectId = event.target.value;
+        renderSocialPosts();
+      });
+
+      const contactForm = document.getElementById("contactForm");
+      const formMessage = document.getElementById("formMessage");
+
+      function showFormMessage(type, message) {
+        formMessage.className = `form-message ${type}`;
+        formMessage.textContent = message;
+      }
+
+      contactForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const formData = new FormData(contactForm);
+        const name = formData.get("name").trim();
+        const email = formData.get("email").trim();
+        const organization = formData.get("organization").trim();
+        const topic = formData.get("topic");
+        const message = formData.get("message").trim();
+        const consent = contactForm.querySelector("#consent").checked;
+
+        const errors = [];
+        if (!name) errors.push(currentLanguage === "lb" ? "Gitt w.e.g. Äre Numm un." : "Please provide your name.");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) errors.push(currentLanguage === "lb" ? "Valabel E-Mail aginn." : "Enter a valid email address.");
+        if (!organization) errors.push(currentLanguage === "lb" ? "Organisatioun fehlt." : "Organisation is required.");
+        if (!topic) errors.push(currentLanguage === "lb" ? "Wielt en Thema." : "Select a topic.");
+        if (message.length < 20) errors.push(currentLanguage === "lb" ? "Messag soll op mannst 20 Zeechen hunn." : "Message must be at least 20 characters.");
+        if (!consent) errors.push(currentLanguage === "lb" ? "Bestätegt w.e.g. d'Politik." : "Please agree to the policy.");
+
+        if (errors.length) {
+          showFormMessage("error", errors.join(" "));
+          return;
+        }
+
+        const newMessage = {
+          id: Date.now(),
+          name,
+          email,
+          organization,
+          topic,
+          message,
+          createdAt: new Date().toISOString()
+        };
+        contactMessages.push(newMessage);
+        console.table(contactMessages);
+        contactForm.reset();
+        showFormMessage("success", currentLanguage === "lb" ? "Merci! Mir mellen eis geschwënn." : "Thank you! We'll be in touch soon.");
+      });
+
+      const chatbotToggle = document.getElementById("chatbotToggle");
+      const chatbotWindow = document.getElementById("chatbotWindow");
+      const chatbotClose = document.getElementById("chatbotClose");
+      const chatbotForm = document.getElementById("chatbotForm");
+      const chatMessagesContainer = document.getElementById("chatMessages");
+      const chatInput = document.getElementById("chatInput");
+
+      const sessionKey = "coconut-chat-session";
+      let chatSessionId = sessionStorage.getItem(sessionKey);
+      if (!chatSessionId) {
+        chatSessionId = `session-${Date.now()}`;
+        sessionStorage.setItem(sessionKey, chatSessionId);
+      }
+
+      function loadChatHistory() {
+        const stored = sessionStorage.getItem(`${sessionKey}-${chatSessionId}`);
+        return stored ? JSON.parse(stored) : [];
+      }
+
+      function saveChatHistory(history) {
+        sessionStorage.setItem(`${sessionKey}-${chatSessionId}`, JSON.stringify(history));
+      }
+
+      function renderChatHistory() {
+        chatMessagesContainer.innerHTML = "";
+        const history = loadChatHistory();
+        history.forEach(entry => {
+          const bubble = createElement("div", `chat-message ${entry.sender}`);
+          bubble.textContent = entry.message;
+          chatMessagesContainer.appendChild(bubble);
+        });
+        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+      }
+
+      function botResponse(message) {
+        const lower = message.toLowerCase();
+        if (lower.includes("entrepreneur")) {
+          return currentLanguage === "lb"
+            ? "Eis Entrepreneurship Lab Programmer ginn all Fréijoer op. Dir kënnt Iech elo fir d'Orientéierungswebinar umellen."
+            : "Our Entrepreneurship Lab opens every spring. You can already register for the orientation webinar.";
+        }
+        if (lower.includes("digital")) {
+          return currentLanguage === "lb"
+            ? "Digital Participatiounsprojeten enthalen Hackathons a Medienkompetenz Trainings. Mir schécken Iech gär den Agenda."
+            : "Digital participation projects include hackathons and media literacy trainings. We're happy to share the agenda.";
+        }
+        if (lower.includes("environment")) {
+          return currentLanguage === "lb"
+            ? "Fir Ëmweltfroen invitéiere mir Iech an d'Climate Resilience Forum am Hierscht."
+            : "For environmental topics we invite you to the Climate Resilience Forum in autumn.";
+        }
+        if (lower.includes("partnership")) {
+          return currentLanguage === "lb"
+            ? "Eist Partnerschaftsteam setzt eng Visio op fir Är Iddi ze exploréieren. Fëllt w.e.g. de Kontaktformular aus."
+            : "Our partnerships team will schedule a call to explore your idea. Please complete the contact form.";
+        }
+        if (lower.includes("funding") || lower.includes("finanz")) {
+          return currentLanguage === "lb"
+            ? "Mir kënnen Iech duerch Erasmus+ a lokal Fondatiounsopruff guidéieren."
+            : "We can guide you through Erasmus+ and local foundation calls.";
+        }
+        return currentLanguage === "lb"
+          ? "Merci fir Är Fro! Eis Equipe äntwert bannent kuerzer Zäit och per E-Mail: info@coconutluxembourg.lu"
+          : "Thanks for reaching out! Our team also replies quickly via email: info@coconutluxembourg.lu";
+      }
+
+      function appendChatMessage(sender, message) {
+        const history = loadChatHistory();
+        history.push({ sender, message });
+        saveChatHistory(history);
+        renderChatHistory();
+      }
+
+      chatbotToggle.addEventListener("click", () => {
+        chatbotWindow.classList.toggle("active");
+        renderChatHistory();
+        chatInput.focus();
+      });
+
+      chatbotClose.addEventListener("click", () => {
+        chatbotWindow.classList.remove("active");
+      });
+
+      chatbotForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+        appendChatMessage("user", message);
+        chatInput.value = "";
+        const response = botResponse(message);
+        setTimeout(() => appendChatMessage("bot", response), 300);
+      });
+
+      renderAll();
+      renderChatHistory();
+    </script>
   </body>
 </html>
